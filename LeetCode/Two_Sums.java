@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Two_Sums {
 
@@ -28,16 +29,43 @@ public class Two_Sums {
         return new int[]{};
     }
 
+    public int[] twoSum_optimised(int[] nums, int target){
+        // I am going to use a hash map to store the (nums[i],i)
+
+        HashMap<Integer,Integer> seen = new HashMap<Integer,Integer>();
+
+        for (int i = 0; i < nums.length; i++){
+            
+            // Calculate the number we are looking for 
+            int remainder = target - nums[i];
+            
+            // Check if the remainder exists in the hash map 
+            if (seen.containsKey(remainder)){
+                // Get the  index of the remainder
+                int remain_idx = seen.get(remainder);
+
+                return new int[]{remain_idx,i};
+            }
+            
+            // Add the explored value in the hash map
+            seen.put(nums[i],i);
+        }
+        // If no matches, return empty array
+        return new int[]{};
+    }
+
 
     public static void main(String[] args) {
 
         Two_Sums my_class = new Two_Sums();
 
-        int [] nums = {3,2,4};
-        int target = 5;
+        int [] nums = {3,3};
+        int target = 6;
 
-        int[] results = my_class.twoSum_bruteforce(nums, target);
+        int[] brute_results = my_class.twoSum_bruteforce(nums, target);
+        int[] optimised_results = my_class.twoSum_optimised(nums, target);
 
-        System.out.println(Arrays.toString(results));
+        System.out.println(Arrays.toString(brute_results));
+        System.out.println(Arrays.toString(optimised_results));
     }
 }
