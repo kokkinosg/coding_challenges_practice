@@ -30,7 +30,7 @@ public class Two_Sums {
     }
 
     public int[] twoSum_optimised(int[] nums, int target){
-        // I am going to use a hash map to store the (nums[i],i)
+        // I am going to use a hash map to store the (nums[i],i) and check membership because it runs in O(1). 
 
         HashMap<Integer,Integer> seen = new HashMap<Integer,Integer>();
 
