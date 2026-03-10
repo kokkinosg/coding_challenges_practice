@@ -30,8 +30,9 @@ public class max_subarray {
         
         max_subarray my_class = new max_subarray();
         int[] nums = {-2,1,-3,4,-1,2,1,-5,4};
+        int[] nums2 = {5,4,-1,7,8};
 
-        System.out.println(my_class.solution(nums));
+        System.out.println(my_class.solution(nums2));
     }
     
 }
