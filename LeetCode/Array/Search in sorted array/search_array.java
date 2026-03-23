@@ -14,20 +14,47 @@ public class search_array {
         // Every time i split hte array, I get a sorted subarray and an unsorted subarray. From the sorted, I need to check if my target is within 
         // its left and right side, if not, split the unsorted. 
         while (true) { 
+            // Check if the array has split enough times that the length of each half is 1
+            if (right - left == 1){
+                // Check if the target is the left element or right
+                if(nums[left] == target){
+                    return left; // return the index of the target
+                } else if (nums[right] == target){
+                    return right;
+                } else {
+                    // This means target is not in the array
+                    return -1;
+                }
+            }
+
+            // Do the splitting 
+
             // Check if the left half is sorted
             if(nums[left]<nums[middle]){
-                // Check if the target is within this sorted half
+                // Check if the target is within this sorted half which is the left half
                 if(target>=nums[left] && target <=nums[middle]){
-                    // Reassign the 
-
+                    // Split the sorted half
+                    right = middle;
+                    middle = left + (right -left)/2;
+                } else {
+                    // The target is in the unsorted right half. 
+                    left = middle;
+                    middle = left + (right-left)/2;
                 }
                 
-            } else { //If right half is sorted
-
+            } else { // The right half is sorted. 
+                
+                // Check if the target is within this right half
+                if(target>= middle && target <= nums[right]){
+                    // Split the sorted right half
+                    left = middle;
+                    middle = left + (right-left)/2;
+                } else {
+                    // The target is in the unsorted left half. 
+                    right = middle;
+                    middle = left + (right-left)/2;
+                }
             }
-            
-
-            
         }
     
     }
